@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import fr.prof.kbox.api.modules.AbstractModule;
+import fr.prof.kbox.enums.Messages;
 
 public class DeathListener implements Listener {
 
@@ -19,8 +20,8 @@ public class DeathListener implements Listener {
 	public void onDeath(final PlayerDeathEvent event) {
 		if (this.module.isEnable()) {
 			if (event.getEntity().getKiller() != null) {
-				Bukkit.broadcastMessage("§6§l" + event.getEntity().getName() + " §evient de se faire tuer par §6§l"
-						+ event.getEntity().getKiller().getName() + "§e.");
+				Bukkit.broadcastMessage(Messages.DEATH.getText().replace("%death%", event.getEntity().getName())
+						.replace("%killer%", event.getEntity().getKiller().getName()));
 			}
 		}
 	}
